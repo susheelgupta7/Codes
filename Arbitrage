@@ -1,0 +1,74 @@
+/*
+susheel_7
+*/
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define pb push_back
+#define mp make_pair
+#define INF 0x3f3f3f3f 
+#define fast_cin() ios_base::sync_with_stdio(false); cin.tie(NULL)
+int main()
+{
+    int count=0;
+    while(1)
+    {
+        int n,flag=0,i,j,k,q;
+        cin>>n;
+        if(n==0)
+        break;
+        map<string,int> mymap;
+        double vec[1000][1000];
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            vec[i][j]=0;
+        }
+        for(i=0;i<n;i++)
+        {
+            string s;
+            cin>>s;
+            mymap[s]=i;
+        }
+        cin>>q;
+        double cost;
+        for(i=0;i<q;i++)
+        {
+            string s1,s2;
+            cin>>s1>>cost>>s2;
+            {
+                vec[mymap[s1]][mymap[s2]]=cost;
+            }
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                for(k=0;k<n;k++)
+                {
+                    vec[j][k]=max(vec[j][k],vec[j][i]*vec[i][k]);
+                }
+            }
+        }
+        
+        for(j=0;j<n;j++)
+        {
+           // cout<<vec[i][j]<<" "; 
+            if(vec[j][j]>1)
+            {
+                flag=1;
+                break;
+                
+            }
+            
+        }
+    count++;
+    
+    if(flag==1)
+    cout<<"Case"<<" "<<count<<":"<<" "<<"Yes"<<endl;
+    else
+    cout<<"Case"<<" "<<count<<":"<<" "<<"No"<<endl;
+ }
+   
+    return 0;
+} 
